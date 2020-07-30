@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header>
+        <h2>Don't Execute</h2>
+        <p>Convert HTML markup to webpage displayable text</p>
+    </header>
+    <section>
+        <div class="left">
+            <div>
+                <h4>Input HTML code</h4>
+            </div>  
+            <textarea oninput="replace(this.value)" name="" id="input"></textarea>
+        </div>
+        <div class="right">
+            <div>
+                <h4>web displayable code</h4>
+                <button onclick="copyToClipboard()">copy</button>
+            </div>
+            <textarea name="" id="output"></textarea>
+        </div>
+    </section>
+    <script>
+        let input = document.getElementById('input'),
+            output = document.getElementById('output')
+        function replace(string){
+            let replaceWith = {
+                '<': "&lt;",
+                '>': "&gt;"
+            };
+            output.value = string.replace(/<|>/gi, matched => replaceWith[matched]);
+        }
+        function copyToClipboard() {
+            navigator.clipboard.writeText(output.value)
+        }
+    </script>
+</body>
+</html>
